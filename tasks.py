@@ -305,7 +305,11 @@ def authenticate_google_sheets():
     credentials_info = st.secrets["google_credentials"]
 
     # Converter para o formato JSON
-    credentials = Credentials.from_service_account_info(credentials_info)
+    credentials = Credentials.from_service_account_info(
+        credentials_info,
+        scopes=["https://www.googleapis.com/auth/spreadsheets"]
+
+    )
     gc = gspread.authorize(credentials)
     return gc
 
