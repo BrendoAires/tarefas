@@ -305,8 +305,9 @@ def authenticate_google_sheets():
     credentials_info = st.secrets["google_credentials"]
 
     # Converter para o formato JSON
-    credentials = Credentials.from_service_account_info(dict(credentials_info))
-    return credentials
+    credentials = Credentials.from_service_account_info(credentials_info)
+    gc = gspread.authorize(credentials)
+    return gc
 
 #Função para subscrever os dados na planilha
 
