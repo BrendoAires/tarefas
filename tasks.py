@@ -290,15 +290,23 @@ def get_task_time_entries(task_ids):
     return pd.DataFrame(all_data)
 
 # Funções Google Sheets
+#def authenticate_google_sheets():
+ #   credentials = Credentials.from_service_account_file(
+  #      GOOGLE_CREDENTIALS_PATH,
+   #     scopes=[
+    #        'https://www.googleapis.com/auth/spreadsheets',
+     #       'https://www.googleapis.com/auth/drive'
+      #  ]
+    #)
+    #return gspread.authorize(credentials)
+
 def authenticate_google_sheets():
-    credentials = Credentials.from_service_account_file(
-        GOOGLE_CREDENTIALS_PATH,
-        scopes=[
-            'https://www.googleapis.com/auth/spreadsheets',
-            'https://www.googleapis.com/auth/drive'
-        ]
-    )
-    return gspread.authorize(credentials)
+    # Obter o conteúdo das credenciais do secrets
+    credentials_info = st.secrets["google_credentials"]
+
+    # Converter para o formato JSON
+    credentials = Credentials.from_service_account_info(dict(credentials_info))
+    return credentials
 
 #Função para subscrever os dados na planilha
 
