@@ -316,23 +316,6 @@ def authenticate_google_sheets():
 #Função para subscrever os dados na planilha
 
 
-def xport_to_google_sheets(dataframe, spreadsheet_id, worksheet_index=0):
-    gc = authenticate_google_sheets()
-    spreadsheet = gc.open_by_key(spreadsheet_id)
-    worksheet = spreadsheet.get_worksheet(worksheet_index)
-
-    dataframe = dataframe.fillna("")
-
-    #data_to_export = [dataframe.columns.values.tolist()] + dataframe.values.tolist()
-    data_to_export = [dataframe.columns.tolist()] + dataframe.astype(str).values.tolist()
-    # Garantir que todos os valores são strings e remover caracteres especiais
-    data_to_export = [[str(value) if pd.notna(value) else "" for value in row] for row in data_to_export]
-
-
-    worksheet.clear()
-    worksheet.update(range_name='A1', values=data_to_export)
-    print(f"Dados exportados com sucesso para a planilha: {spreadsheet_id}")
-
 
 def export_to_google_sheets(dataframe, spreadsheet_id, worksheet_name):
     """
