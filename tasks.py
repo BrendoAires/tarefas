@@ -314,7 +314,7 @@ def authenticate_google_sheets():
     return gc
 #a
 #Função para subscrever os dados na planilha
-
+#0
 
 
 def export_to_google_sheets(dataframe, spreadsheet_id, worksheet_name):
