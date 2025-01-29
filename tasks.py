@@ -312,7 +312,7 @@ def authenticate_google_sheets():
     )
     gc = gspread.authorize(credentials)
     return gc
-
+#a
 #Função para subscrever os dados na planilha
 
 
